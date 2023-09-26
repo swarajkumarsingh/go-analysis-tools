@@ -28,6 +28,13 @@ To get started, follow these steps:
     ./analysis-tool
 ```
 
+## Configure
+1. Run Prometheus
+```bash
+    docker run -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+```
+2. 
+
 ## Contributing
 Contributions are welcome! If you have ideas for improvements or new features, please open an issue or submit a pull request. Make sure to follow our code of conduct.
 
