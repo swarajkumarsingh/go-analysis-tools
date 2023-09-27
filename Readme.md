@@ -11,8 +11,8 @@ This Go Analysis Tool is a powerful and versatile application designed to analyz
 - **Easy Integration:** Seamlessly integrate this tool into your existing Go applications with minimal configuration.
 
 ## Runtime images
-![Prometheus](image.png)
-![Grafana](image-1.png)
+![Prometheus](https://res.cloudinary.com/swaraj-cloud/image/upload/v1695793686/nunh3dnhyf4hwme1bnwu.png)
+![Grafana](https://res.cloudinary.com/swaraj-cloud/image/upload/v1695793686/ssfqks0nrskgngs0wxbp.png)
 
 ## Installation
 To get started, follow these steps:
