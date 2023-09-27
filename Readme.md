@@ -1,3 +1,5 @@
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+
 # Go Analysis Tool
 
 ## Overview
