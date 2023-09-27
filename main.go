@@ -39,10 +39,9 @@ var cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{
 
 func CustomMetricsMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// config logic to check cpu temperature
 		cpuTemp.Set(float64(100))
 		totalRequests.Inc()
-		fmt.Println(totalRequests.Desc())
-		fmt.Println(totalRequests)
 		c.Next()
 	}
 }
