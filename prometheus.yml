@@ -3,4 +3,4 @@ scrape_configs:
   scrape_interval: 5s
   static_configs:
   - targets:
-    - ["<ip-address>:8080"]
+    - ["192.168.29.134:8180"]

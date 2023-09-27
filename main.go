@@ -23,17 +23,36 @@ func prometheusHandler() gin.HandlerFunc {
 	}
 }
 
+var (
+	totalRequests = prometheus.NewCounter(
+		prometheus.CounterOpts{
+			Name: "app_total_requests",
+			Help: "Total number of requests to my app",
+		},
+	)
+)
+
 var cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{
-	Name: "cpu_temperature_celsius",
+	Name: "cpu_temperature_celsius_a",
 	Help: "Current temperature of the CPU.",
 })
 
+func CustomMetricsMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		cpuTemp.Set(float64(100))
+		totalRequests.Inc()
+		fmt.Println(totalRequests.Desc())
+		fmt.Println(totalRequests)
+		c.Next()
+	}
+}
+
 func init() {
 	prometheus.MustRegister(cpuTemp)
+	prometheus.MustRegister(totalRequests)
 }
 
 func main() {
-
 	if conf.ENV == conf.ENV_PROD {
 		gin.SetMode(gin.ReleaseMode)
 
@@ -71,6 +90,7 @@ func main() {
 
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
+	r.Use(CustomMetricsMiddleware())
 	r.Use(gintrace.Middleware("my-web-app"))
 
 	r.GET("/", func(ctx *gin.Context) {
@@ -80,7 +100,21 @@ func main() {
 		})
 	})
 
+	r.GET("/big-task", func(ctx *gin.Context) {
+
+		num := 0
+		for i := 0; i < 10000000000; i++ {
+			num = i
+		}
+
+		ctx.JSON(http.StatusOK, map[string]interface{}{
+			"error":   false,
+			"message": "OK",
+			"number":  num,
+		})
+	})
+
 	r.GET("/metrics", prometheusHandler())
 
-	r.Run(conf.PORT)
+	r.Run()
 }

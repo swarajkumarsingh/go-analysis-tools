@@ -1,12 +1,10 @@
 package conf
 
-import "fmt"
 
 var Stage string = Dev
 var ENV string = Dev
 var Dev string = "dev"
 var Prod string = "prod"
-var PORT string = fmt.Sprintf("localhost:%s", "8080")
 
 const (
 	ENV_PROD  = "prod"

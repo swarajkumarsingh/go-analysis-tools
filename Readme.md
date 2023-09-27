@@ -10,6 +10,10 @@ This Go Analysis Tool is a powerful and versatile application designed to analyz
 - **Historical Data Analysis:** Analyze historical data to identify trends and patterns in your application's performance, helping you make data-driven decisions.
 - **Easy Integration:** Seamlessly integrate this tool into your existing Go applications with minimal configuration.
 
+## Runtime images
+![Prometheus](image.png)
+![Grafana](image-1.png)
+
 ## Installation
 To get started, follow these steps:
 
@@ -31,9 +35,12 @@ To get started, follow these steps:
 ## Configure
 1. Run Prometheus
 ```bash
-    docker run -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+    docker run -d -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 ```
-2. 
+2. Run Grafana
+```bash
+    docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
+```
 
 ## Contributing
 Contributions are welcome! If you have ideas for improvements or new features, please open an issue or submit a pull request. Make sure to follow our code of conduct.
